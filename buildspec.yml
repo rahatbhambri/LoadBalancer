@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.x
+  build:
+    commands:
+      - echo Building the Go app...
+      - go build -o myapp main.go
+  post_build:
+    commands:
+      - echo Build completed.
+artifacts:
+  files:
+    - myapp
