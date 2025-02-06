@@ -2,15 +2,17 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      golang: 1.x
+    commands:
+      - curl -sSL https://dl.google.com/go/go1.17.3.linux-amd64.tar.gz | tar -C /usr/local -xz
+      - export PATH=$PATH:/usr/local/go/bin
+      - go version
   build:
     commands:
-      - echo Building the Go app...
-      - go build -o myapp main.go
+      - GOOS=linux GOARCH=amd64 go build -o myapp .
   post_build:
     commands:
-      - echo Build completed.
+      - ls -al
 artifacts:
   files:
     - myapp
+    - Procfile
